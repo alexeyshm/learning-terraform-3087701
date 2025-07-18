@@ -14,9 +14,9 @@ data "aws_ami" "app_ami" {
   owners = ["979382823631"] # Bitnami
 }
 
-data "aws_vpc" "default" (
+data "aws_vpc" "default" {
   default = true
-)
+}
 
 resource "aws_instance" "blog" {
   ami           = data.aws_ami.app_ami.id
@@ -54,8 +54,7 @@ resource "aws_security_group_rule" "blog_https_in" {
 
   security_group_id = aws_security_group.blog.id
 }
-resou
-rce "aws_security_group_rule" "blog_everything_out" {
+resource "aws_security_group_rule" "blog_everything_out" {
   type       = "engress"
   from_port  = 0
   to_port    = 0
